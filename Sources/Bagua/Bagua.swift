@@ -2,8 +2,8 @@
 
 public struct Hexagram: Identifiable, Equatable {
   public var id: String { chineseCharacter }
-  let symbol: String
-  let chineseCharacter: String
+  public let symbol: String
+  public let chineseCharacter: String
 }
 
 public let ShierPiguas = [
