@@ -6,6 +6,35 @@ public struct Hexagram: Identifiable, Equatable {
   public let chineseCharacter: String
 }
 
+public struct Trigram: Identifiable, Equatable {
+  public var id: String { chineseCharacter }
+  public let symbol: String
+  public let chineseCharacter: String
+  public let xiang: String
+}
+
+public let xiantianBagua =  [
+  Trigram(symbol: "☰", chineseCharacter: "乾", xiang: "天"),
+  Trigram(symbol: "☴", chineseCharacter: "巽", xiang: "风"),
+  Trigram(symbol: "☵", chineseCharacter: "坎", xiang: "水"),
+  Trigram(symbol: "☶", chineseCharacter: "艮", xiang: "山"),
+  Trigram(symbol: "☷", chineseCharacter: "坤", xiang: "地"),
+  Trigram(symbol: "☳", chineseCharacter: "震", xiang: "雷"),
+  Trigram(symbol: "☲", chineseCharacter: "離", xiang: "火"),
+  Trigram(symbol: "☱", chineseCharacter: "兌", xiang: "泽")
+]
+
+public let houtianBagua =  [
+  Trigram(symbol: "☲", chineseCharacter: "離", xiang: "火"),
+  Trigram(symbol: "☷", chineseCharacter: "坤", xiang: "地"),
+  Trigram(symbol: "☱", chineseCharacter: "兌", xiang: "泽"),
+  Trigram(symbol: "☰", chineseCharacter: "乾", xiang: "天"),
+  Trigram(symbol: "☵", chineseCharacter: "坎", xiang: "水"),
+  Trigram(symbol: "☶", chineseCharacter: "艮", xiang: "山"),
+  Trigram(symbol: "☳", chineseCharacter: "震", xiang: "雷"),
+  Trigram(symbol: "☴", chineseCharacter: "巽", xiang: "风")
+]
+
 public let ShierPiguas = [
   Hexagram(symbol: "䷀", chineseCharacter: "乾"),
   Hexagram(symbol: "䷫", chineseCharacter: "姤"),
