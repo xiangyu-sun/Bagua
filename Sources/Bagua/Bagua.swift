@@ -21,13 +21,13 @@ public let xiantianBagua =  [
   Trigram(symbol: "☷", chineseCharacter: "坤", xiang: "地"),
   Trigram(symbol: "☳", chineseCharacter: "震", xiang: "雷"),
   Trigram(symbol: "☲", chineseCharacter: "離", xiang: "火"),
-  Trigram(symbol: "☱", chineseCharacter: "兌", xiang: "泽")
+  Trigram(symbol: "☱", chineseCharacter: "兌", xiang: "澤")
 ]
 
 public let houtianBagua =  [
   Trigram(symbol: "☲", chineseCharacter: "離", xiang: "火"),
   Trigram(symbol: "☷", chineseCharacter: "坤", xiang: "地"),
-  Trigram(symbol: "☱", chineseCharacter: "兌", xiang: "泽"),
+  Trigram(symbol: "☱", chineseCharacter: "兌", xiang: "澤"),
   Trigram(symbol: "☰", chineseCharacter: "乾", xiang: "天"),
   Trigram(symbol: "☵", chineseCharacter: "坎", xiang: "水"),
   Trigram(symbol: "☶", chineseCharacter: "艮", xiang: "山"),
