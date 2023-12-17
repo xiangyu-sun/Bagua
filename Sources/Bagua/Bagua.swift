@@ -11,28 +11,39 @@ public struct Trigram: Identifiable, Equatable {
   public let symbol: String
   public let chineseCharacter: String
   public let xiang: String
+  
+  public static let qian = Trigram(symbol: "☰", chineseCharacter: "乾", xiang: "天")
+  public static let xun = Trigram(symbol: "☴", chineseCharacter: "巽", xiang: "风")
+  public static let kan = Trigram(symbol: "☵", chineseCharacter: "坎", xiang: "水")
+  public static let gen = Trigram(symbol: "☶", chineseCharacter: "艮", xiang: "山")
+  public static let kun = Trigram(symbol: "☷", chineseCharacter: "坤", xiang: "地")
+  public static let zhen = Trigram(symbol: "☳", chineseCharacter: "震", xiang: "雷")
+  public static let li = Trigram(symbol: "☲", chineseCharacter: "離", xiang: "火")
+  public static let dui = Trigram(symbol: "☱", chineseCharacter: "兌", xiang: "澤")
 }
 
+
+
 public let xiantianBagua =  [
-  Trigram(symbol: "☰", chineseCharacter: "乾", xiang: "天"),
-  Trigram(symbol: "☴", chineseCharacter: "巽", xiang: "风"),
-  Trigram(symbol: "☵", chineseCharacter: "坎", xiang: "水"),
-  Trigram(symbol: "☶", chineseCharacter: "艮", xiang: "山"),
-  Trigram(symbol: "☷", chineseCharacter: "坤", xiang: "地"),
-  Trigram(symbol: "☳", chineseCharacter: "震", xiang: "雷"),
-  Trigram(symbol: "☲", chineseCharacter: "離", xiang: "火"),
-  Trigram(symbol: "☱", chineseCharacter: "兌", xiang: "澤")
+  Trigram.qian,
+  .xun,
+  .kan,
+  .gen,
+  .kun,
+  .zhen,
+  .li,
+  .dui
 ]
 
 public let houtianBagua =  [
-  Trigram(symbol: "☲", chineseCharacter: "離", xiang: "火"),
-  Trigram(symbol: "☷", chineseCharacter: "坤", xiang: "地"),
-  Trigram(symbol: "☱", chineseCharacter: "兌", xiang: "澤"),
-  Trigram(symbol: "☰", chineseCharacter: "乾", xiang: "天"),
-  Trigram(symbol: "☵", chineseCharacter: "坎", xiang: "水"),
-  Trigram(symbol: "☶", chineseCharacter: "艮", xiang: "山"),
-  Trigram(symbol: "☳", chineseCharacter: "震", xiang: "雷"),
-  Trigram(symbol: "☴", chineseCharacter: "巽", xiang: "风")
+  Trigram.li,
+  .kun,
+  .dui,
+  .qian,
+  .kan,
+  .gen,
+  .zhen,
+  .xun
 ]
 
 public let ShierPiguas = [
