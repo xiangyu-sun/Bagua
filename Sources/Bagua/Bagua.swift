@@ -113,6 +113,9 @@ public let houtianBagua =  [
 /// ShierPiguas (十二批卦) is a select collection of 12 hexagrams that may be used in certain
 /// divination systems or as part of cyclical interpretations of the I Ching.
 public let ShierPiguas = [
+  Hexagram(symbol: "䷊", chineseCharacter: "泰"),
+  Hexagram(symbol: "䷡", chineseCharacter: "大壯"),
+  Hexagram(symbol: "䷪", chineseCharacter: "夬"),
   Hexagram(symbol: "䷀", chineseCharacter: "乾"),
   Hexagram(symbol: "䷫", chineseCharacter: "姤"),
   Hexagram(symbol: "䷠", chineseCharacter: "遯"),
@@ -121,10 +124,7 @@ public let ShierPiguas = [
   Hexagram(symbol: "䷖", chineseCharacter: "剝"),
   Hexagram(symbol: "䷁", chineseCharacter: "坤"),
   Hexagram(symbol: "䷗", chineseCharacter: "復"),
-  Hexagram(symbol: "䷒", chineseCharacter: "臨"),
-  Hexagram(symbol: "䷊", chineseCharacter: "泰"),
-  Hexagram(symbol: "䷡", chineseCharacter: "大壯"),
-  Hexagram(symbol: "䷪", chineseCharacter: "夬"),
+  Hexagram(symbol: "䷒", chineseCharacter: "臨")
 ]
 
 /// The hexagramSymbols array contains all 64 hexagrams of the I Ching arranged in a
