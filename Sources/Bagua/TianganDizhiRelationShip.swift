@@ -1,6 +1,32 @@
 import ChineseAstrologyCalendar
 
 extension Tiangan {
+  
+  public var heWuxing: Wuxing {
+    switch self {
+    case .jia:
+        .tu
+    case .yi:
+        .jin
+    case .bing:
+        .shui
+    case .ding:
+        .mu
+    case .wu:
+        .huo
+    case .ji:
+        .tu
+    case .geng:
+        .jin
+    case .xin:
+        .shui
+    case .ren:
+        .mu
+    case .kui:
+        .huo
+    }
+  }
+  
   /// 合 partner of the heavenly stem (甲↔己, 乙↔庚, 丙↔辛, 丁↔壬, 戊↔癸)
   public var hePartner: Tiangan {
     // Stems 1–5 pair with 6–10 by adding 5; stems 6–10 pair with 1–5 by subtracting 5
