@@ -7,7 +7,7 @@ let package = Package(
     name: "Bagua",
     platforms: [
       .iOS(.v13),
-      .watchOS(.v5),
+      .watchOS(.v6),
       .macOS(.v10_14)
     ],
     products: [
