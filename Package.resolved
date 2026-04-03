@@ -3,10 +3,10 @@
     {
       "identity" : "astral",
       "kind" : "remoteSourceControl",
-      "location" : "git@github.com:xiangyu-sun/Astral.git",
+      "location" : "https://github.com/xiangyu-sun/Astral.git",
       "state" : {
         "branch" : "main",
-        "revision" : "f8b9c0914bacfea3973290eee9faa66858b2ec46"
+        "revision" : "e9d873f744021db6f69a06877562ee0ed1091360"
       }
     },
     {
@@ -15,7 +15,7 @@
       "location" : "https://github.com/xiangyu-sun/ChineseAstrologyCalendar",
       "state" : {
         "branch" : "master",
-        "revision" : "de7f24b25f69555c0fe269fac2da5170870c464a"
+        "revision" : "d404e41af8fe401214b220f40679d04740deeb77"
       }
     },
     {

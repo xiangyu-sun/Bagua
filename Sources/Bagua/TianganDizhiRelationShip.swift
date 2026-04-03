@@ -5,25 +5,25 @@ extension Tiangan {
   public var heWuxing: Wuxing {
     switch self {
     case .jia:
-        .tu
+        .earth
     case .yi:
-        .jin
+        .metal
     case .bing:
-        .shui
+        .water
     case .ding:
-        .mu
+        .wood
     case .wu:
-        .huo
+        .fire
     case .ji:
-        .tu
+        .earth
     case .geng:
-        .jin
+        .metal
     case .xin:
-        .shui
+        .water
     case .ren:
-        .mu
+        .wood
     case .kui:
-        .huo
+        .fire
     }
   }
   

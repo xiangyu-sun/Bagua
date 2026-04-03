@@ -54,21 +54,21 @@ extension ChineseMoonPhase {
 
   public var gua: Trigram? {
     switch self {
-    case .朔, .晦:
+    case .newMoon, .darkMoon:
       return .kun
-    case .蛾眉月:
+    case .waxingCrescent:
       return .zhen
-    case .上弦月:
+    case .firstQuarter:
       return .dui
-    case .漸盈凸月:
+    case .waxingGibbous:
       return nil
-    case .望:
+    case .fullMoon:
       return .qian
-    case .漸虧凸月:
+    case .waningGibbous:
       return nil
-    case .下弦月:
+    case .lastQuarter:
       return .xun
-    case .殘月:
+    case .waningCrescent:
       return .gen
     }
   }
