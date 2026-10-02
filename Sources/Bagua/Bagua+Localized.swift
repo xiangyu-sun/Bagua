@@ -8,12 +8,19 @@ import Foundation
 /// image ("Heaven", "Fire") is available from ``Trigram/localizedXiang(in:)``.
 extension Trigram: LocalizedNaming {
   public func localizedName(in language: DisplayLanguage) -> String {
-    Self.names[chineseCharacter]?[language] ?? chineseCharacter
+    lookup(Self.names, language) ?? chineseCharacter
   }
 
   /// The trigram's natural image (象): 天, 地, 雷, 風 … or "Heaven", "Earth", "Thunder", "Wind" ….
   public func localizedXiang(in language: DisplayLanguage) -> String {
-    Self.images[chineseCharacter]?[language] ?? xiang
+    lookup(Self.images, language) ?? xiang
+  }
+
+  /// Looks up this trigram in `table`. Languages without their own entry
+  /// (Russian, Spanish, …) use English.
+  private func lookup(_ table: [String: [DisplayLanguage: String]], _ language: DisplayLanguage) -> String? {
+    guard let entry = table[chineseCharacter] else { return nil }
+    return entry[language] ?? entry[.en]
   }
 
   private static let names: [String: [DisplayLanguage: String]] = [
@@ -60,7 +67,7 @@ extension HexagramSymbol: LocalizedNaming {
     switch language {
     case .zhHant: return String(describing: self)
     case .zhHans: return Self.simplifiedNames[number - 1]
-    case .en: return Self.englishNames[number - 1]
+    default: return Self.englishNames[number - 1]
     }
   }
 

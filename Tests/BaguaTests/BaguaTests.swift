@@ -39,6 +39,10 @@ import Testing
     #expect(Trigram.li.localizedName(in: .en) == "Lí")
     #expect(Trigram.xun.localizedXiang(in: .zhHans) == "风")
     #expect(Trigram.dui.localizedXiang(in: .en) == "Lake")
+    // Languages without their own text fall back to English.
+    #expect(Trigram.li.localizedName(in: .ru) == "Lí")
+    #expect(Trigram.dui.localizedXiang(in: .es) == "Lake")
+    #expect(HexagramSymbol.乾.localizedName(in: .ru) == "The Creative")
     for trigram in xiantianBagua {
       #expect(trigram.localizedName(in: .en) != trigram.chineseCharacter)
       #expect(trigram.localizedXiang(in: .en) != trigram.xiang)
