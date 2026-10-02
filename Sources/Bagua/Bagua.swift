@@ -14,10 +14,11 @@
 //  set in a traditional order.
 //
 
+import ChineseAstrologyCalendar
 import Foundation
 
 
-public enum HexagramSymbol: String, CaseIterable {
+public enum HexagramSymbol: String, CaseIterable, Sendable {
     case 乾 = "䷀"
     case 坤 = "䷁"
     case 屯 = "䷂"
@@ -90,7 +91,7 @@ public enum HexagramSymbol: String, CaseIterable {
 /// A Hexagram represents one of the 64 symbols used in the I Ching, each of which is composed
 /// of two trigrams. In this simple model, a hexagram is defined by its Unicode symbol and its
 /// associated Chinese character.
-public struct Hexagram: Identifiable, Equatable {
+public struct Hexagram: Identifiable, Hashable, Sendable {
   /// The identifier is the Chinese character.
   public var id: String { chineseCharacter }
   /// The Unicode symbol representing the hexagram.
@@ -104,7 +105,7 @@ public struct Hexagram: Identifiable, Equatable {
 /// A Trigram is one of the eight fundamental symbols (八卦) that represent natural phenomena.
 /// Each trigram is associated with a symbol, a Chinese character, and an attribute (xiang)
 /// that indicates its elemental image (e.g. "天" for heaven, "地" for earth).
-public struct Trigram: Identifiable, Equatable {
+public struct Trigram: Identifiable, Hashable, Sendable {
   /// The identifier is the Chinese character.
   public var id: String { chineseCharacter }
   /// The Unicode symbol representing the trigram.
@@ -116,7 +117,7 @@ public struct Trigram: Identifiable, Equatable {
   
   // Static instances for the eight trigrams.
   public static let qian = Trigram(symbol: "☰", chineseCharacter: "乾", xiang: "天")
-  public static let xun  = Trigram(symbol: "☴", chineseCharacter: "巽", xiang: "风")
+  public static let xun  = Trigram(symbol: "☴", chineseCharacter: "巽", xiang: "風")
   public static let kan  = Trigram(symbol: "☵", chineseCharacter: "坎", xiang: "水")
   public static let gen  = Trigram(symbol: "☶", chineseCharacter: "艮", xiang: "山")
   public static let kun  = Trigram(symbol: "☷", chineseCharacter: "坤", xiang: "地")
@@ -129,25 +130,37 @@ public struct Trigram: Identifiable, Equatable {
 
 extension Trigram {
   /// Returns `true` if the trigram is traditionally considered a Yang (active) trigram.
-  /// In traditional classification:
-  ///   - Yang trigrams: 乾 (qian), 巽 (xun), 震 (zhen), 離 (li)
-  ///   - Yin trigrams: 坤 (kun), 艮 (gen), 坎 (kan), 兌 (dui)
+  ///
+  /// Follows the family classification of the 說卦傳: 乾 (father) and the three
+  /// sons 震, 坎, 艮 are yang; 坤 (mother) and the three daughters 巽, 離, 兌 are
+  /// yin. Each yang trigram other than 乾 has a single yang line.
   public var isYang: Bool {
-    // Compare the Chinese character to known Yang symbols.
-    return chineseCharacter == "乾" ||
-           chineseCharacter == "巽" ||
-           chineseCharacter == "震" ||
-           chineseCharacter == "離"
+    [Trigram.qian, .zhen, .kan, .gen].contains(self)
   }
-  
+
   /// Returns `true` if the trigram is traditionally considered a Yin (passive) trigram.
   public var isYin: Bool {
     return !isYang
   }
   
+  /// The Five Element (五行) associated with the trigram.
+  public var wuxing: Wuxing {
+    switch chineseCharacter {
+    case "乾", "兌": return .metal
+    case "震", "巽": return .wood
+    case "坎": return .water
+    case "離": return .fire
+    default: return .earth  // 坤, 艮
+    }
+  }
+}
+
+// MARK: - Trigram + CustomStringConvertible
+
+extension Trigram: CustomStringConvertible {
   /// Returns a brief description combining the symbol, the Chinese character, and the elemental image.
   public var description: String {
-    return "\(symbol) (\(chineseCharacter)) – \(xiang)"
+    "\(symbol) (\(chineseCharacter)) – \(xiang)"
   }
 }
 
@@ -155,6 +168,9 @@ extension Trigram {
 
 /// The xiantian (先天) Bagua is the arrangement of trigrams representing the primordial
 /// or pre-heaven order. This arrangement is often used in Taoist cosmology and Feng Shui.
+///
+/// Listed by position, starting at the south and going round through the
+/// south-west: 乾 S, 巽 SW, 坎 W, 艮 NW, 坤 N, 震 NE, 離 E, 兌 SE.
 public let xiantianBagua =  [
   Trigram.qian,
   .xun,
@@ -168,6 +184,9 @@ public let xiantianBagua =  [
 
 /// The houtian (后天) Bagua is the arrangement of trigrams representing the post-heaven,
 /// practical order used in human affairs and applied Feng Shui.
+///
+/// Listed by position, starting at the south and going round through the
+/// south-west: 離 S, 坤 SW, 兌 W, 乾 NW, 坎 N, 艮 NE, 震 E, 巽 SE.
 public let houtianBagua =  [
   Trigram.li,
   .kun,
