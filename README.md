@@ -13,19 +13,23 @@ The eight trigrams (八卦) and sixty-four hexagrams (六十四卦) of the I Chi
 ## Installation
 
 ```swift
-.package(url: "https://github.com/xiangyu-sun/Bagua.git", from: "1.1.0")
+.package(url: "https://github.com/xiangyu-sun/Bagua.git", from: "1.2.0")
 ```
 
 ## Localization
 
 Trigrams and hexagrams adopt ChineseAstrologyCalendar's `LocalizedNaming`, so they render
-in Traditional Chinese, Simplified Chinese or English with the same call as the rest of
-the calendar. Other languages (Russian, Spanish) use the English names:
+in Traditional Chinese, Simplified Chinese, English or Spanish with the same call as the
+rest of the calendar. Russian uses the English names. In English and Spanish, trigram names
+are Pinyin and their images are translated. Spanish hexagram titles follow D. J. Vogelmann's
+translation of Richard Wilhelm's I Ching:
 
 ```swift
 Trigram.li.localizedName(in: .zhHans)            // "离"
 Trigram.dui.localizedXiang(in: .en)              // "Lake"
 HexagramSymbol.既濟.localizedName(in: .en)        // "After Completion"
+HexagramSymbol.乾.localizedName(in: .es)          // "Lo Creativo"
+Trigram.li.localizedXiang(in: .es)               // "Fuego"
 HexagramSymbol.既濟.pinyin                        // "Jì Jì"
 ```
 

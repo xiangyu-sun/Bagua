@@ -1,5 +1,5 @@
 {
-  "originHash" : "989be5daa790b8b3ad145461a9955bf0054462a3fec82b95428bf06fe2d01fba",
+  "originHash" : "bdc82d0ffc6fe704f48414b4a19f38d4e4798b1208c94b61783edd3a58431434",
   "pins" : [
     {
       "identity" : "astral",
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/xiangyu-sun/ChineseAstrologyCalendar",
       "state" : {
-        "revision" : "9d12a415d711bbbf3ac6596ec93cf0658f3a2ad0",
-        "version" : "4.3.1"
+        "revision" : "6075febdab78e4a0fc0cbbc65c235fefedcf1438",
+        "version" : "4.4.0"
       }
     },
     {

@@ -3,46 +3,48 @@ import Foundation
 
 // MARK: - Trigram + LocalizedNaming
 
-/// Chinese names use the trigram's character (乾, 離 / 离). English uses Hanyu
-/// Pinyin, since the trigram names have no settled translation; the English
-/// image ("Heaven", "Fire") is available from ``Trigram/localizedXiang(in:)``.
+/// Chinese names use the trigram's character (乾, 離 / 离). English and Spanish
+/// use Hanyu Pinyin, since the trigram names have no settled translation; the
+/// translated image ("Heaven" / "Cielo", "Fire" / "Fuego") is available from
+/// ``Trigram/localizedXiang(in:)``.
 extension Trigram: LocalizedNaming {
   public func localizedName(in language: DisplayLanguage) -> String {
     lookup(Self.names, language) ?? chineseCharacter
   }
 
-  /// The trigram's natural image (象): 天, 地, 雷, 風 … or "Heaven", "Earth", "Thunder", "Wind" ….
+  /// The trigram's natural image (象): 天, 地, 雷, 風 …, "Heaven", "Earth", "Thunder", "Wind" …
+  /// or "Cielo", "Tierra", "Trueno", "Viento" ….
   public func localizedXiang(in language: DisplayLanguage) -> String {
     lookup(Self.images, language) ?? xiang
   }
 
   /// Looks up this trigram in `table`. Languages without their own entry
-  /// (Russian, Spanish, …) use English.
+  /// (Russian, …) use English.
   private func lookup(_ table: [String: [DisplayLanguage: String]], _ language: DisplayLanguage) -> String? {
     guard let entry = table[chineseCharacter] else { return nil }
     return entry[language] ?? entry[.en]
   }
 
   private static let names: [String: [DisplayLanguage: String]] = [
-    "乾": [.zhHant: "乾", .zhHans: "乾", .en: "Qián"],
-    "坤": [.zhHant: "坤", .zhHans: "坤", .en: "Kūn"],
-    "震": [.zhHant: "震", .zhHans: "震", .en: "Zhèn"],
-    "巽": [.zhHant: "巽", .zhHans: "巽", .en: "Xùn"],
-    "坎": [.zhHant: "坎", .zhHans: "坎", .en: "Kǎn"],
-    "離": [.zhHant: "離", .zhHans: "离", .en: "Lí"],
-    "艮": [.zhHant: "艮", .zhHans: "艮", .en: "Gèn"],
-    "兌": [.zhHant: "兌", .zhHans: "兑", .en: "Duì"],
+    "乾": [.zhHant: "乾", .zhHans: "乾", .en: "Qián", .es: "Qián"],
+    "坤": [.zhHant: "坤", .zhHans: "坤", .en: "Kūn", .es: "Kūn"],
+    "震": [.zhHant: "震", .zhHans: "震", .en: "Zhèn", .es: "Zhèn"],
+    "巽": [.zhHant: "巽", .zhHans: "巽", .en: "Xùn", .es: "Xùn"],
+    "坎": [.zhHant: "坎", .zhHans: "坎", .en: "Kǎn", .es: "Kǎn"],
+    "離": [.zhHant: "離", .zhHans: "离", .en: "Lí", .es: "Lí"],
+    "艮": [.zhHant: "艮", .zhHans: "艮", .en: "Gèn", .es: "Gèn"],
+    "兌": [.zhHant: "兌", .zhHans: "兑", .en: "Duì", .es: "Duì"],
   ]
 
   private static let images: [String: [DisplayLanguage: String]] = [
-    "乾": [.zhHant: "天", .zhHans: "天", .en: "Heaven"],
-    "坤": [.zhHant: "地", .zhHans: "地", .en: "Earth"],
-    "震": [.zhHant: "雷", .zhHans: "雷", .en: "Thunder"],
-    "巽": [.zhHant: "風", .zhHans: "风", .en: "Wind"],
-    "坎": [.zhHant: "水", .zhHans: "水", .en: "Water"],
-    "離": [.zhHant: "火", .zhHans: "火", .en: "Fire"],
-    "艮": [.zhHant: "山", .zhHans: "山", .en: "Mountain"],
-    "兌": [.zhHant: "澤", .zhHans: "泽", .en: "Lake"],
+    "乾": [.zhHant: "天", .zhHans: "天", .en: "Heaven", .es: "Cielo"],
+    "坤": [.zhHant: "地", .zhHans: "地", .en: "Earth", .es: "Tierra"],
+    "震": [.zhHant: "雷", .zhHans: "雷", .en: "Thunder", .es: "Trueno"],
+    "巽": [.zhHant: "風", .zhHans: "风", .en: "Wind", .es: "Viento"],
+    "坎": [.zhHant: "水", .zhHans: "水", .en: "Water", .es: "Agua"],
+    "離": [.zhHant: "火", .zhHans: "火", .en: "Fire", .es: "Fuego"],
+    "艮": [.zhHant: "山", .zhHans: "山", .en: "Mountain", .es: "Montaña"],
+    "兌": [.zhHant: "澤", .zhHans: "泽", .en: "Lake", .es: "Lago"],
   ]
 }
 
@@ -62,11 +64,14 @@ extension HexagramSymbol: LocalizedNaming {
   }
 
   /// Chinese names are the hexagram's character(s). English uses the common
-  /// Wilhelm–Baynes titles ("The Creative", "Biting Through").
+  /// Wilhelm–Baynes titles ("The Creative", "Biting Through") and Spanish the
+  /// titles of D. J. Vogelmann's translation of Wilhelm ("Lo Creativo",
+  /// "La Mordedura Tajante"). Other languages use the English titles.
   public func localizedName(in language: DisplayLanguage) -> String {
     switch language {
     case .zhHant: return String(describing: self)
     case .zhHans: return Self.simplifiedNames[number - 1]
+    case .es: return Self.spanishNames[number - 1]
     default: return Self.englishNames[number - 1]
     }
   }
@@ -110,6 +115,25 @@ extension HexagramSymbol: LocalizedNaming {
     "Development", "The Marrying Maiden", "Abundance", "The Wanderer",
     "The Gentle", "The Joyous", "Dispersion", "Limitation",
     "Inner Truth", "Preponderance of the Small", "After Completion", "Before Completion",
+  ]
+
+  private static let spanishNames = [
+    "Lo Creativo", "Lo Receptivo", "La Dificultad Inicial", "La Necedad Juvenil",
+    "La Espera", "El Conflicto", "El Ejército", "La Solidaridad",
+    "La Fuerza Domesticadora de lo Pequeño", "El Porte", "La Paz", "El Estancamiento",
+    "Comunidad con los Hombres", "La Posesión de lo Grande", "La Modestia", "El Entusiasmo",
+    "El Seguimiento", "El Trabajo en lo Echado a Perder", "El Acercamiento", "La Contemplación",
+    "La Mordedura Tajante", "La Gracia", "La Desintegración", "El Retorno",
+    "La Inocencia", "La Fuerza Domesticadora de lo Grande", "Las Comisuras de la Boca", "La Preponderancia de lo Grande",
+    "Lo Abismal", "Lo Adherente", "El Influjo", "La Duración",
+    "La Retirada", "El Poder de lo Grande", "El Progreso", "El Oscurecimiento de la Luz",
+    "El Clan", "El Antagonismo", "El Impedimento", "La Liberación",
+    "La Merma", "El Aumento", "El Desbordamiento", "El Ir al Encuentro",
+    "La Reunión", "La Subida", "La Desazón", "El Pozo de Agua",
+    "La Revolución", "El Caldero", "Lo Suscitativo", "El Aquietamiento",
+    "La Evolución", "La Muchacha que se Casa", "La Plenitud", "El Andariego",
+    "Lo Suave", "Lo Sereno", "La Disolución", "La Restricción",
+    "La Verdad Interior", "La Preponderancia de lo Pequeño", "Después de la Consumación", "Antes de la Consumación",
   ]
 }
 
